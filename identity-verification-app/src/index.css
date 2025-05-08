@@ -1,9 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap");
 @import "tailwindcss";
 
-html {
-  @apply dark; /* Forces dark mode */
-}
+/* html {
+  @apply dark;
+} */
 
 body {
   @apply bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans;

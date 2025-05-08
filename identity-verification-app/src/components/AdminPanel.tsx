@@ -119,7 +119,7 @@ function AdminPanel({ contractAddress, abi }: AdminPanelProps) {
           <input
             type="text"
             value={newAdmin}
-            onChange={(e) => setUserAddress(e.target.value)}
+            onChange={(e) => setNewAdmin(e.target.value)}
             className="block w-full rounded-sm bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 focus:border-blue-500 dark:focus:border-blue-400 focus:ring-blue-500 dark:focus:ring-blue-400 focus:ring-2 transition-all duration-300 mb-2"
             placeholder="New admin address"
           />
