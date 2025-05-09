@@ -49,44 +49,41 @@ function IdentityForm({
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800/70 backdrop-blur-md p-6 rounded-sm border border-gray-200 dark:border-gray-700 shadow-sm w-full max-w-lg mb-6">
-      <h2 className="text-2xl font-semibold text-gray-900 dark:text-blue-400 mb-4">
+    <div className="bg-gray-900/80 backdrop-blur-md p-6 rounded-md border border-gray-700/50 hover:shadow-glow-cyan/50 hover:scale-[1.02] transition-all duration-300 w-full max-w-lg mb-8 animate-slide-up animate-glow-pulse">
+      <h2 className="text-2xl font-semibold text-cyan-400 mb-6 font-mono">
         Register Identity
       </h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-5">
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+          <label className="block text-sm font-medium text-gray-300 mb-1 font-mono">
             Full Name
           </label>
           <input
             type="text"
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
-            className="mt-1 block w-full rounded-sm bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 focus:border-blue-500 dark:focus:border-blue-400 focus:ring-blue-500 dark:focus:ring-blue-400 focus:ring-2 transition-all duration-300"
+            className="block w-full rounded-md bg-gray-800/50 border border-gray-700 text-gray-100 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30 transition-all duration-200 px-3 py-2"
             placeholder="Enter full name"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+          <label className="block text-sm font-medium text-gray-300 mb-1 font-mono">
             ID Number
           </label>
           <input
             type="number"
             value={idNumber}
             onChange={(e) => setIdNumber(e.target.value)}
-            className="mt-1 block w-full rounded-sm bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 focus:border-blue-500 dark:focus:border-blue-400 focus:ring-blue-500 dark:focus:ring-blue-400 focus:ring-2 transition-all duration-300"
+            className="block w-full rounded-md bg-gray-800/50 border border-gray-700 text-gray-100 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30 transition-all duration-200 px-3 py-2"
             placeholder="Enter ID number"
           />
         </div>
-        {error && (
-          <p className="text-red-500 dark:text-red-400 text-sm font-mono">
-            {error}
-          </p>
-        )}
+        {error && <p className="text-red-400 text-sm font-mono">{error}</p>}
         <button
           type="submit"
-          className="w-full bg-blue-500 dark:bg-gradient-blue-purple text-white px-6 py-2 rounded-sm hover:bg-blue-400 dark:hover:scale-105 dark:hover:shadow-neon-glow transition-all duration-300"
+          className="relative w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-6 py-2 rounded-md hover:scale-105 hover:shadow-glow-cyan hover:animate-pulse transition-all duration-300 group overflow-hidden hover:cursor-pointer"
         >
+          <span className="absolute inset-0 bg-cyan-300 opacity-0 group-hover:opacity-30 transition-opacity duration-300"></span>
           Register
         </button>
       </form>

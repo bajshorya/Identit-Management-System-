@@ -59,120 +59,157 @@ function App() {
   });
 
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 flex flex-col items-center p-6">
-      <h1 className="text-4xl font-bold text-gray-900 dark:text-transparent dark:bg-clip-text dark:bg-gradient-blue-purple mb-8 animate-pulse">
-        Identity Verification
-      </h1>
+    <div className="min-h-screen bg-gradient-to-b from-gray-950 to-gray-900 text-gray-100 flex flex-col relative overflow-hidden">
+      {/* Background Animation Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 animate-gradient-shift pointer-events-none"></div>
+      <div className="absolute inset-0 digital-rain pointer-events-none"></div>
 
-      {/* Wallet Connection */}
-      <div className="mb-6">
-        {isConnected ? (
-          <div className="flex items-center space-x-4">
-            <span className="text-sm font-mono text-gray-700 dark:text-blue-400">
-              Connected:{" "}
-              {address
-                ? `${address.slice(0, 6)}...${address.slice(-4)}`
-                : "Unknown"}
-            </span>
-            <button
-              onClick={() => disconnect()}
-              className="bg-red-500 dark:bg-purple-600 text-white px-6 py-2 rounded-sm hover:bg-red-400 dark:hover:bg-purple-500 hover:scale-105 transition-all duration-300 dark:shadow-neon-glow"
-            >
-              Disconnect
-            </button>
+      {/* Header */}
+      <header className="w-full py-6 px-6 sticky top-0 z-20 border-b border-gray-800/50 bg-gradient-to-b from-gray-950 to-gray-900/90 animate-fade-in">
+        <div className="max-w-5xl mx-auto flex flex-col items-center gap-4">
+          <div className="w-full text-center">
+            <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-purple-500 animate-typing">
+              Decentralized Identity Verification
+            </h1>
           </div>
-        ) : (
-          <button
-            onClick={() => connect({ connector: connectors[0] })}
-            className="bg-blue-500 dark:bg-gradient-blue-purple text-white px-6 py-2 rounded-sm hover:bg-blue-400 dark:hover:scale-105 dark:hover:shadow-neon-glow transition-all duration-300"
-          >
-            Connect Wallet
-          </button>
-        )}
-      </div>
+          <p className="text-gray-400 text-center max-w-md font-mono">
+            Securely verify and manage your identity on the blockchain with our
+            cutting-edge Web3 solution.
+          </p>
+        </div>
+      </header>
 
-      {/* Verification Fee */}
-      {verificationFee !== undefined && (
-        <p className="text-gray-600 dark:text-gray-300 font-mono mb-6">
-          Verification Fee:{" "}
-          <span className="text-blue-500 dark:text-blue-400">
-            {formatEther(verificationFee)} ETH
-          </span>
-        </p>
-      )}
-
-      {/* Identity Status */}
-      {isConnected && identity !== null && (
-        <div className="bg-white dark:bg-gray-800/70 backdrop-blur-md p-6 rounded-sm border border-gray-200 dark:border-gray-700 shadow-sm mb-6 w-full max-w-lg">
-          <h2 className="text-2xl font-semibold text-gray-900 dark:text-blue-400 mb-4">
-            Identity Status
-          </h2>
-          {identity?.fullName ? (
-            <>
-              <p className="font-mono text-gray-700 dark:text-gray-200">
-                <strong className="text-gray-900 dark:text-purple-400">
-                  Name:
-                </strong>{" "}
-                {identity.fullName}
-              </p>
-              <p className="font-mono text-gray-700 dark:text-gray-200">
-                <strong className="text-gray-900 dark:text-purple-400">
-                  ID Number:
-                </strong>{" "}
-                {identity.idNumber}
-              </p>
-              <p className="font-mono text-gray-700 dark:text-gray-200">
-                <strong className="text-gray-900 dark:text-purple-400">
-                  Verified:
-                </strong>{" "}
-                <span
-                  className={
-                    identity.isVerified
-                      ? "text-green-500 dark:text-green-400"
-                      : "text-red-500 dark:text-red-400"
-                  }
-                >
-                  {identity.isVerified ? "Yes" : "No"}
-                </span>
-              </p>
-              {identity.verificationTimestamp > 0 && (
-                <p className="font-mono text-gray-700 dark:text-gray-200">
-                  <strong className="text-gray-900 dark:text-purple-400">
-                    Verified On:
-                  </strong>{" "}
-                  {new Date(
-                    identity.verificationTimestamp * 1000
-                  ).toLocaleString()}
-                </p>
-              )}
-            </>
+      {/* Main Content */}
+      <main className="flex-1 w-full max-w-5xl mx-auto p-6 flex flex-col items-center pt-8 z-10">
+        {/* Wallet Connection */}
+        <div className="mb-8 animate-slide-up">
+          {isConnected ? (
+            <div className="flex items-center gap-4">
+              <span className="text-sm font-mono text-cyan-400 bg-gray-800/50 px-3 py-1 rounded-md">
+                Connected:{" "}
+                {address
+                  ? `${address.slice(0, 6)}...${address.slice(-4)}`
+                  : "Unknown"}
+              </span>
+              <button
+                onClick={() => disconnect()}
+                className="relative bg-gradient-to-r from-red-500 to-red-700 text-white px-6 py-2 rounded-md hover:scale-105 hover:shadow-glow-red hover:animate-pulse transition-all duration-300 group overflow-hidden"
+              >
+                <span className="absolute inset-0 bg-red-400 opacity-0 group-hover:opacity-30 transition-opacity duration-300"></span>
+                Disconnect
+              </button>
+            </div>
           ) : (
-            <p className="font-mono text-gray-600 dark:text-gray-300">
-              No identity registered.
-            </p>
+            <button
+              onClick={() => connect({ connector: connectors[0] })}
+              className="relative bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-6 py-2 rounded-md hover:scale-105 hover:shadow-glow-cyan hover:animate-pulse transition-all duration-300 group overflow-hidden"
+            >
+              <span className="absolute inset-0 bg-cyan-300 opacity-0 group-hover:opacity-30 transition-opacity duration-300"></span>
+              Connect Wallet
+            </button>
           )}
         </div>
-      )}
 
-      {/* Identity Registration Form */}
-      {isConnected && (!identity || !identity.fullName) && (
-        <IdentityForm
-          contractAddress={CONTRACT_ADDRESS}
-          abi={IdentityVerificationABI}
-          verificationFee={verificationFee}
-        />
-      )}
+        {/* Verification Fee */}
+        {verificationFee !== undefined && (
+          <p className="text-gray-400 font-mono mb-8 animate-slide-up">
+            Verification Fee:{" "}
+            <span className="text-cyan-400">
+              {formatEther(verificationFee)} ETH
+            </span>
+          </p>
+        )}
 
-      {/* Admin Panel */}
-      {isConnected &&
-        address &&
-        admin &&
-        address.toLowerCase() === admin.toLowerCase() && (
-          <AdminPanel
+        {/* Identity Status */}
+        {isConnected && identity !== null && (
+          <div className="bg-gray-900/80 backdrop-blur-md p-6 rounded-md border border-gray-700/50 hover:shadow-glow-cyan/50 hover:scale-[1.02] transition-all duration-300 w-full max-w-lg mb-8 animate-slide-up animate-glow-pulse">
+            <h2 className="text-2xl font-semibold text-cyan-400 mb-4 font-mono">
+              Identity Status
+            </h2>
+            {identity?.fullName ? (
+              <>
+                <p className="font-mono text-gray-300 mb-2">
+                  <strong className="text-purple-400">Name:</strong>{" "}
+                  {identity.fullName}
+                </p>
+                <p className="font-mono text-gray-300 mb-2">
+                  <strong className="text-purple-400">ID Number:</strong>{" "}
+                  {identity.idNumber}
+                </p>
+                <p className="font-mono text-gray-300 mb-2">
+                  <strong className="text-purple-400">Verified:</strong>{" "}
+                  <span
+                    className={
+                      identity.isVerified ? "text-green-400" : "text-red-400"
+                    }
+                  >
+                    {identity.isVerified ? "Yes" : "No"}
+                  </span>
+                </p>
+                {identity.verificationTimestamp > 0 && (
+                  <p className="font-mono text-gray-300">
+                    <strong className="text-purple-400">Verified On:</strong>{" "}
+                    {new Date(
+                      identity.verificationTimestamp * 1000
+                    ).toLocaleString()}
+                  </p>
+                )}
+              </>
+            ) : (
+              <p className="font-mono text-gray-500">No identity registered.</p>
+            )}
+          </div>
+        )}
+
+        {/* Identity Registration Form */}
+        {isConnected && (!identity || !identity.fullName) && (
+          <IdentityForm
             contractAddress={CONTRACT_ADDRESS}
             abi={IdentityVerificationABI}
+            verificationFee={verificationFee}
           />
         )}
+
+        {/* Admin Panel */}
+        {isConnected &&
+          address &&
+          admin &&
+          address.toLowerCase() === admin.toLowerCase() && (
+            <AdminPanel
+              contractAddress={CONTRACT_ADDRESS}
+              abi={IdentityVerificationABI}
+            />
+          )}
+      </main>
+
+      {/* Footer */}
+      <footer className="w-full py-6 px-6 bg-gradient-to-b from-gray-950 to-gray-900/90 border-t border-gray-800/50 animate-fade-in z-10">
+        <div className="max-w-5xl mx-auto flex flex-col items-center gap-4">
+          <p className="text-gray-400 text-sm font-mono">
+            © 2025 Identity Verification System. All rights reserved.
+          </p>
+          <div className="flex gap-4">
+            <a
+              href="#"
+              className="text-cyan-400 hover:text-cyan-300 transition-colors font-mono"
+            >
+              Privacy Policy
+            </a>
+            <a
+              href="#"
+              className="text-cyan-400 hover:text-cyan-300 transition-colors font-mono"
+            >
+              Terms of Service
+            </a>
+            <a
+              href="#"
+              className="text-cyan-400 hover:text-cyan-300 transition-colors font-mono"
+            >
+              Contact
+            </a>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
