@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useWriteContract } from "wagmi";
-import clsx from "clsx";
 
 interface AdminPanelProps {
   contractAddress: string;

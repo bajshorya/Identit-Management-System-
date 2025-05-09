@@ -4,7 +4,6 @@ import { ethers } from "ethers";
 import IdentityForm from "./components/IdentityForm";
 import AdminPanel from "./components/AdminPanel";
 import IdentityVerificationABI from "./abi/IdentityVerificationABI.json";
-import clsx from "clsx";
 import { formatEther } from "viem";
 
 // Deployed contract address on Sepolia
@@ -93,7 +92,7 @@ function App() {
               </span>
               <button
                 onClick={() => disconnect()}
-                className="relative bg-gradient-to-r from-red-500 to-red-700 text-white px-6 py-2 rounded-md hover:scale-105 hover:shadow-glow-red hover:animate-pulse transition-all duration-300 group overflow-hidden"
+                className="relative bg-gradient-to-r from-red-500 to-red-700 text-white px-6 py-2 rounded-md hover:scale-105 hover:shadow-glow-red hover:animate-pulse transition-all duration-300 group overflow-hidden hover:cursor-pointer"
               >
                 <span className="absolute inset-0 bg-red-400 opacity-0 group-hover:opacity-30 transition-opacity duration-300"></span>
                 Disconnect
@@ -102,7 +101,7 @@ function App() {
           ) : (
             <button
               onClick={() => connect({ connector: connectors[0] })}
-              className="relative bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-6 py-2 rounded-md hover:scale-105 hover:shadow-glow-cyan hover:animate-pulse transition-all duration-300 group overflow-hidden"
+              className="relative bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-6 py-2 rounded-md hover:scale-105 hover:shadow-glow-cyan hover:animate-pulse transition-all duration-300 group overflow-hidden hover:cursor-pointer"
             >
               <span className="absolute inset-0 bg-cyan-300 opacity-0 group-hover:opacity-30 transition-opacity duration-300"></span>
               Connect Wallet
